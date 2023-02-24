@@ -1,0 +1,9 @@
+#Ignore these dirs:
+.venv/
+dist/
+gendiff/**/__pycache__/
+
+#Ignore these files:
+file1.json
+file2.json
+result.json
