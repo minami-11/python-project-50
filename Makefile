@@ -14,7 +14,7 @@ shell:
 	poetry shell
 
 gendiff:
-	poetry run gendiff
+	poetry run gendiff file1.json file2
 
 
 #For installing package from operated system (add "--user" after "install")
