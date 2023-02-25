@@ -45,9 +45,8 @@ def generate_diff(file_path_1: str, file_path_2: str):
     new_data = new_data = dict(data2 | data1)
     result_list = list_start + match_difference(new_data,
                                                 data1, data2) + list_end
-    print(*result_list, sep='\n')
 
     # with open('result.json', 'w') as result_file:
     #     json.dump(new_data, result_file, indent=3)
 
-    return None
+    return '\n'.join(result_list)
