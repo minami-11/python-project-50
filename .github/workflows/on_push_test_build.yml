@@ -1,0 +1,15 @@
+name: Build test Workflow
+
+on: push
+jobs:
+  on_push_test_build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: |
+          pip install poetry
+          #make ...
+      - name: Run linter and pytest
+        run: |
+          #make check
