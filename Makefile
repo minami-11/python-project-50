@@ -16,6 +16,10 @@ publish:
 shell:
 	poetry shell
 
+test-cover:
+	poetry run pytest --cov=gendiff --cov-report xml
+
+
 gendiff:
 	poetry run gendiff file1.json file2.json
 
