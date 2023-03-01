@@ -4,6 +4,9 @@ automate-build: shell lint build publish
 build:
 	poetry build
 
+check:
+	poetry run pytest -vv
+
 lint:
 	poetry run flake8 gendiff
 
@@ -14,7 +17,7 @@ shell:
 	poetry shell
 
 gendiff:
-	poetry run gendiff file1.json file2
+	poetry run gendiff file1.json file2.json
 
 
 #For installing package from operated system (add "--user" after "install")
