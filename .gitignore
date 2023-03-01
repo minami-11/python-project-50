@@ -12,6 +12,7 @@ file2.json
 result.txt
 tests/conftest.py
 .coverage
+coverage.xml
 
 
 #Excludes
