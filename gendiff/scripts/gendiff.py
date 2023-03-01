@@ -13,7 +13,10 @@ args = parser.parse_args()
 
 
 def main():
-    print(generate_diff(args.first_file, args.second_file))
+    generate_diff(args.first_file, args.second_file)
+    with open('result.txt', 'r') as file:
+        result = file.read()
+    print(result)
 
 
 if __name__ == '__main__':
