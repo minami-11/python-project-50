@@ -3,22 +3,14 @@ from pathlib import Path
 from gendiff.gendiff import generate_diff
 
 
-gendiff_output = Path(Path.home(), 'Hexlet_Projects', 'python-project-50',
-                      'result.txt')
-path1 = Path(Path.home(), 'Hexlet_Projects', 'python-project-50',
-             'tests', 'fixtures', 'file0_1.json')
-path2 = Path(Path.home(), 'Hexlet_Projects', 'python-project-50',
-             'tests', 'fixtures', 'file0_2.json')
-path3 = Path(Path.home(), 'Hexlet_Projects', 'python-project-50',
-             'tests', 'fixtures', 'file1.json')
-path4 = Path(Path.home(), 'Hexlet_Projects', 'python-project-50',
-             'tests', 'fixtures', 'file2.json')
-standart1 = Path(Path.home(), 'Hexlet_Projects', 'python-project-50',
-                 'tests', 'fixtures', 'standart1.txt')
-standart2 = Path(Path.home(), 'Hexlet_Projects', 'python-project-50',
-                 'tests', 'fixtures', 'standart2.txt')
-standart3 = Path(Path.home(), 'Hexlet_Projects', 'python-project-50',
-                 'tests', 'fixtures', 'standart3.txt')
+gendiff_output = Path(Path.cwd(), 'result.txt')
+path1 = Path(Path.cwd(), 'tests', 'fixtures', 'file0_1.json')
+path2 = Path(Path.cwd(), 'tests', 'fixtures', 'file0_2.json')
+path3 = Path(Path.cwd(), 'tests', 'fixtures', 'file1.json')
+path4 = Path(Path.cwd(), 'tests', 'fixtures', 'file2.json')
+standart1 = Path(Path.cwd(), 'tests', 'fixtures', 'standart1.txt')
+standart2 = Path(Path.cwd(), 'tests', 'fixtures', 'standart2.txt')
+standart3 = Path(Path.cwd(), 'tests', 'fixtures', 'standart3.txt')
 
 
 @pytest.mark.parametrize("file_1, file_2, correct_result", [
