@@ -1,9 +1,14 @@
 #Ignore these dirs:
 .venv/
+.pytest_cache/
 dist/
 gendiff/**/__pycache__/
+tests/**/__pycache__/
+
 
 #Ignore these files:
 file1.json
 file2.json
-result.json
+result.txt
+tests/conftest.py
+.coverage
