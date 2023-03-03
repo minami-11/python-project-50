@@ -7,9 +7,9 @@ def extract_json_yaml(file_path: str):
     with open(file_path, 'r') as file:
         data = file.read()
         file.seek(SEEK_SET, 0)
-        if str(file_path).endswith('.json'):
+        if file_path.endswith('.json'):
             output_data = json.load(file) if data else {}
-        elif str(file_path).endswith('.yaml') or str(file_path).endswith('.yml'):
+        elif file_path.endswith('.yaml') or file_path.endswith('.yml'):
             output_data = yaml.safe_load(file) if data else {}
         else:
             raise TypeError('Get ERROR. Check the file type.')
@@ -18,8 +18,8 @@ def extract_json_yaml(file_path: str):
 
 def get_data_from_file(file_1: str, file_2: str):
     '''Return data from two json files if files are not empty'''
-    data_1 = extract_json_yaml(file_1)
-    data_2 = extract_json_yaml(file_2)
+    data_1 = extract_json_yaml(str(file_1))
+    data_2 = extract_json_yaml(str(file_2))
     return data_1, data_2
 
 
