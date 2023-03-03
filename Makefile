@@ -20,7 +20,7 @@ test-cover:
 	poetry run pytest --cov=gendiff --cov-report xml
 
 
-gendiff:
+gendiff1:
 	poetry run gendiff file1.json file2.json
 
 
