@@ -11,7 +11,6 @@ path4 = Path(Path.cwd(), 'tests', 'fixtures', 'file2.json')
 path5 = Path(Path.cwd(), 'tests', 'fixtures', 'file3.json')
 path6 = Path(Path.cwd(), 'tests', 'fixtures', 'file4.json')
 
-
 path11 = Path(Path.cwd(), 'tests', 'fixtures', 'FILE0.yml')
 path12 = Path(Path.cwd(), 'tests', 'fixtures', 'FILE1.yaml')
 path13 = Path(Path.cwd(), 'tests', 'fixtures', 'FILE2.yml')
@@ -30,7 +29,6 @@ standart4 = Path(Path.cwd(), 'tests', 'fixtures', 'standart4.txt')
     (path3, path4, standart3),
     (path11, path12, standart2),
     (path12, path13, standart3),
-
     (path5, path6, standart4),
     (path14, path15, standart4)
 ])
