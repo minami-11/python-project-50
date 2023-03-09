@@ -26,9 +26,8 @@ def normalize(value, deep: (int | float)):
     '''Bring value to the required output parameters'''
     if is_dict(value):
         open_char = '{'
-        close_char = '}'
-        return '\n'.join([open_char] + unpack_dict(value, deep) +
-                         [' ' * 4 * deep + close_char])
+        close_char = ' ' * 4 * deep + '}'
+        return '\n'.join([open_char] + unpack_dict(value, deep) + [close_char])
     converter = {
         'True': 'true',
         'False': 'false',
