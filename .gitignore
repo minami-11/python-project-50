@@ -10,6 +10,7 @@ tests/**/__pycache__/
 file1.json
 file2.json
 result.txt
+result.json
 tests/conftest.py
 .coverage
 coverage.xml
