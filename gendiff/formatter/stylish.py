@@ -3,60 +3,51 @@ def is_dict(value) -> bool:
     return isinstance(value, dict)
 
 
-def get_shift(deep, variable=2):
+def shift(deep, variable: int = 2):
     return ' ' * (4 * deep - variable)
 
 
-def normalize(value, deep: (int | float) = None, format: str = 'stylish'):
-    '''Bring value to the required output parameters'''
-
+def get_change_mark(value) -> str:
+    '''Return modified mark if value is node'''
     if is_dict(value):
-        open_char = '{'
-        close_char = get_shift(deep, 0) + '}'
-        return '\n'.join([open_char] + unpack_dict(value, deep) + [close_char])
-    converter = {
-        'True': 'true',
-        'False': 'false',
-        'None': 'null'
-    }
-    return converter.get(str(value), value)
+        return value['modified']
+    else:
+        return ''
 
 
-def unpack_dict(sample: dict, level: (int | float)) -> list:
-    '''Converts nested dictionary to flat list'''
+def get_finish_line(income):
     output = []
-    shift = get_shift(level + 1, 0)
-    for key, value in sample.items():
-        if is_dict(value):
-            output += [shift + f'{key}: ' + '{']
-            output += unpack_dict(value, level + 1)
-            output.append(shift + '}')
+    if not isinstance(income, (dict, list)):
+        return income
+    if is_dict(income) and not isinstance(income['children'], (list, dict)):
+        output.append(f"{shift(income['depth'])}{income['modified']}"
+                      f"{income['name']}: {income['children']}")
+    else:
+        output.append(use_stylish_format(income))
+    return '\n'.join(output)
+
+
+def use_stylish_format(income_list) -> str:
+    '''Format input string in stylish way'''
+    if not income_list:
+        return '{}'
+    output = []
+    output.append('{')
+    for item in income_list:
+        mark = get_change_mark(item)
+
+        if all([is_dict(item), isinstance(item['children'], list),
+                mark == "-+"]):
+            output.append(f"{shift(item['depth'])}- {item['name']}: "
+                          f"{get_finish_line(item['children'][0])}")
+            output.append(f"{shift(item['depth'])}+ {item['name']}: "
+                          f"{get_finish_line(item['children'][1])}")
+
+        elif is_dict(item) and isinstance(item['children'], list):
+            output.append(f"{shift(item['depth'])}{mark}{item['name']}: "
+                          f"{use_stylish_format(item['children'])}")
         else:
-            output.append(shift + f'{key}: {value}')
-    return output
+            output.append(f"{get_finish_line(item)}")
 
-
-def format_in_stylish(data_1, data_2, key, deep) -> str:
-    '''Mark differences and add stylish shift to output string'''
-    value_1 = f'{key}: {normalize(data_1.get(key), deep)}'.strip()
-    value_2 = f'{key}: {normalize(data_2.get(key), deep)}'.strip()
-    shift = get_shift(deep)
-    if key in data_2 and key not in data_1:
-        return shift + '+ ' + value_2
-    elif key in data_2 and data_1.get(key) == data_2.get(key):
-        return shift + '  ' + value_2
-    elif key in data_2 and data_1.get(key) != data_2.get(key):
-        return '\n'. join((shift + '- ' + value_1,
-                          shift + '+ ' + value_2))
-    else:
-        return shift + '- ' + value_1
-
-
-def use_stylish_logic(data_1, data_2, deep, key, walk):
-    value_1 = data_1.get(key)
-    value_2 = data_2.get(key)
-    if all(map(is_dict, [value_1, value_2])):
-        return f'{get_shift(deep)}  {key}: ' + walk(value_1,
-                                                    value_2, deep)
-    else:
-        return format_in_stylish(data_1, data_2, key, deep)
+    output.append(f"{shift(item['depth'] - 1, 0)}" + '}')
+    return '\n'.join(map(lambda x: x.rstrip(), output))
