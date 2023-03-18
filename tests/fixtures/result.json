@@ -1,0 +1,187 @@
+[
+    {
+        "name": "common",
+        "modified": "  ",
+        "depth": 1,
+        "children": [
+            {
+                "name": "follow",
+                "depth": 2,
+                "modified": "+ ",
+                "children": "false"
+            },
+            {
+                "name": "setting1",
+                "depth": 2,
+                "modified": "  ",
+                "children": "Value 1"
+            },
+            {
+                "name": "setting2",
+                "depth": 2,
+                "modified": "- ",
+                "children": 200
+            },
+            {
+                "name": "setting3",
+                "depth": 2,
+                "modified": "-+",
+                "children": [
+                    "true",
+                    "null"
+                ]
+            },
+            {
+                "name": "setting4",
+                "depth": 2,
+                "modified": "+ ",
+                "children": "blah blah"
+            },
+            {
+                "name": "setting5",
+                "depth": 2,
+                "modified": "+ ",
+                "children": [
+                    {
+                        "modified": "  ",
+                        "depth": 3,
+                        "name": "key5",
+                        "children": "value5"
+                    }
+                ]
+            },
+            {
+                "name": "setting6",
+                "modified": "  ",
+                "depth": 2,
+                "children": [
+                    {
+                        "name": "doge",
+                        "modified": "  ",
+                        "depth": 3,
+                        "children": [
+                            {
+                                "name": "wow",
+                                "depth": 4,
+                                "modified": "-+",
+                                "children": [
+                                    "",
+                                    "so much"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "key",
+                        "depth": 3,
+                        "modified": "  ",
+                        "children": "value"
+                    },
+                    {
+                        "name": "ops",
+                        "depth": 3,
+                        "modified": "+ ",
+                        "children": "vops"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "group1",
+        "modified": "  ",
+        "depth": 1,
+        "children": [
+            {
+                "name": "baz",
+                "depth": 2,
+                "modified": "-+",
+                "children": [
+                    "bas",
+                    "bars"
+                ]
+            },
+            {
+                "name": "foo",
+                "depth": 2,
+                "modified": "  ",
+                "children": "bar"
+            },
+            {
+                "name": "nest",
+                "depth": 2,
+                "modified": "-+",
+                "children": [
+                    [
+                        {
+                            "modified": "  ",
+                            "depth": 3,
+                            "name": "key",
+                            "children": "value"
+                        }
+                    ],
+                    "str"
+                ]
+            }
+        ]
+    },
+    {
+        "name": "group2",
+        "depth": 1,
+        "modified": "- ",
+        "children": [
+            {
+                "modified": "  ",
+                "depth": 2,
+                "name": "abc",
+                "children": 12345
+            },
+            {
+                "modified": "  ",
+                "depth": 2,
+                "name": "deep",
+                "children": [
+                    {
+                        "modified": "  ",
+                        "depth": 3,
+                        "name": "id",
+                        "children": 45
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "group3",
+        "depth": 1,
+        "modified": "+ ",
+        "children": [
+            {
+                "modified": "  ",
+                "depth": 2,
+                "name": "deep",
+                "children": [
+                    {
+                        "modified": "  ",
+                        "depth": 3,
+                        "name": "id",
+                        "children": [
+                            {
+                                "modified": "  ",
+                                "depth": 4,
+                                "name": "number",
+                                "children": 45
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "modified": "  ",
+                "depth": 2,
+                "name": "fee",
+                "children": 100500
+            }
+        ]
+    }
+]
