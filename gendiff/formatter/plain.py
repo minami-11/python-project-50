@@ -7,7 +7,8 @@ def make_valid(value):
     if isinstance(value, (list, dict)):
         return "[complex value]"
     excludes = ('false', 'true', 'null')
-    return f"'{value}'" if value not in excludes else value
+    return f"'{value}'" if all([value not in excludes,
+                                isinstance(value, str)]) else value
 
 
 def get_plain_result(item: dict) -> str:
