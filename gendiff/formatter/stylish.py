@@ -41,4 +41,4 @@ def use_stylish_format(income_list) -> str:
             output.append(f"{normalize(item)}")
 
     output.append(f"{shift(item['depth'] - 1, 0)}" + '}')
-    return '\n'.join(map(lambda x: x.rstrip(), output))
+    return '\n'.join(output)
