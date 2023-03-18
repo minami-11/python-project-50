@@ -27,6 +27,7 @@ def use_plain_format(input_list: list) -> str:
     '''Format input string in plain way'''
     if not input_list:
         return '{}'
+
     def walk(input_list, path):
         output = []
         for item in input_list:
