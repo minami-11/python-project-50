@@ -1,7 +1,4 @@
-
-def is_dict(value) -> bool:
-    '''Return True if value is dictionary, else False'''
-    return isinstance(value, dict)
+from .formatter.format_libr import is_dict
 
 
 def unpack_nested_dict(sample: dict, level) -> list:
