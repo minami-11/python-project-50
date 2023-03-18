@@ -1,9 +1,11 @@
 import pytest
+import json
 from pathlib import Path
 from gendiff.gendiff import generate_diff
 
 
 gendiff_output = Path(Path.cwd(), 'result.txt')
+gendiff_json_output = Path(Path.cwd(), 'result.json')
 
 # Test files fixtures:
 path1 = Path(Path.cwd(), 'tests', 'fixtures', 'file0_1.json')       # Empty
@@ -28,6 +30,8 @@ standart4 = Path(Path.cwd(), 'tests', 'fixtures', 'standart4.txt')  # Nested
 plain2 = Path(Path.cwd(), 'tests', 'fixtures', 'plain2.txt')        # Empty|Flat
 plain3 = Path(Path.cwd(), 'tests', 'fixtures', 'plain3.txt')        # Flat|Flat
 plain4 = Path(Path.cwd(), 'tests', 'fixtures', 'plain4.txt')        # Nested
+
+json1 = Path(Path.cwd(), 'tests', 'fixtures', 'result.json')        # Nested
 
 
 @pytest.mark.parametrize("file_1, file_2, correct_result", [
@@ -66,6 +70,20 @@ def test_gendiff_plain_format(file_1, file_2, correct_result):
     with open(gendiff_output, 'r') as output:
         with open(correct_result, 'r') as correct:
             assert output.read() == correct.read()
+
+
+@pytest.mark.parametrize("file_1, file_2, correct_result", [
+    (path5, path6, json1)
+])
+def test_gendiff_with_json_valid_output(file_1, file_2, correct_result):
+    generate_diff(file_1, file_2, 'json')
+    with open(gendiff_json_output, 'r') as json_output:
+        with open(correct_result, 'r') as json_correct:
+            output = json_output.read()
+            output_data = json.loads(output)
+            correct = json_correct.read()
+            correct_data = json.loads(correct)
+            assert output_data == correct_data
 
 
 def test_parsing_wrong_type():
