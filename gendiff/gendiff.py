@@ -33,6 +33,6 @@ def generate_diff(file_1: str, file_2: str, format: str = 'stylish') -> None:
         case _:
             with open('result.json', 'w') as json_file:
                 json.dump(diff_list, json_file, indent=4)
-
-    with open('result.txt', 'w') as txt:
-        print(formatted_string, file=txt)
+    if format != 'json':
+        with open('result.txt', 'w') as txt:
+            print(formatted_string, file=txt)
