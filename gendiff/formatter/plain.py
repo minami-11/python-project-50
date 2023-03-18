@@ -1,39 +1,45 @@
 from ..formatter.stylish import is_dict
 
 
-def normalize(value):
+def make_valid(value):
     '''Bring value to the required output parameters'''
-
-    if is_dict(value):
+    if isinstance(value, (list, dict)):
         return "[complex value]"
-    converter = {
-        'True': 'true',
-        'False': 'false',
-        'None': 'null'
-    }
-    return converter.get(str(value), f"'{value}'")
+    excludes = ('false', 'true', 'null')
+    return f"'{value}'" if value not in excludes else value
 
 
-def format_in_plain(data_1, data_2, key):
+def get_plain_result(item: dict) -> str:
     '''Output result gets plain'''
-    value_1 = data_1.get(key)
-    value_2 = data_2.get(key)
-    if key in data_2 and key not in data_1:
-        return f"was added with value: {normalize(value_2)}"
-    elif key in data_2 and value_1 != value_2:
-        return f"was updated. From {normalize(value_1)} to {normalize(value_2)}"
-    elif key in data_1 and key not in data_2:
-        return 'was removed'
-    return ''
+
+    match item['modified']:
+        case '+ ': return f"was added with value: " \
+                          f"{make_valid(item['children'])}"
+        case '- ': return 'was removed'
+        case _:
+            value_1 = make_valid(item['children'][0])
+            value_2 = make_valid(item['children'][1])
+            return f"was updated. From {value_1} to {value_2}"
 
 
-def use_plain_logic(data_1, data_2, storage_, key, walk):
-    value_1 = data_1.get(key)
-    value_2 = data_2.get(key)
-    if all(map(is_dict, [value_1, value_2])):
-        mediate_path = storage_ + '.' * (bool(storage_)) + str(key)
-        return f"{walk(value_1, value_2, mediate_path)}"
-    else:
-        if format_in_plain(data_1, data_2, key):
-            return f"Property '{storage_}{'.' * (bool(storage_))}{key}' " \
-                   f"{format_in_plain(data_1, data_2, key)}"
+def use_plain_format(input_list: list) -> str:
+    '''Format input string in plain way'''
+    if not input_list:
+        return '{}'
+
+    def walk(input_list, path):
+        output = []
+
+        for item in input_list:
+            point = '.' * (bool(path))
+
+            if is_dict(item) and not item['modified'].strip():
+                path_ = path + point + item['name']
+                output.append(f"{walk(item['children'], path_)}")
+            else:
+                if is_dict(item):
+                    output.append(f"Property '{(path + point + item['name'])}' "
+                                  f"{get_plain_result(item)}")
+
+        return '\n'.join(filter(None, output))
+    return walk(input_list, '')
