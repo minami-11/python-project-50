@@ -4,6 +4,7 @@
 dist/
 gendiff/**/__pycache__/
 tests/**/__pycache__/
+hexlet_test/
 
 
 #Ignore these files:
@@ -14,6 +15,7 @@ result.json
 tests/conftest.py
 .coverage
 coverage.xml
+test_hexlet.py
 
 
 #Excludes
