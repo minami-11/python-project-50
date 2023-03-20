@@ -17,10 +17,6 @@ args = parser.parse_args()
 
 def main():
     generate_diff(args.first_file, args.second_file, args.format)
-    with open('result.txt', 'r') as file:
-        result = file.read()
-    if args.format != 'json':
-        print(result)
 
 
 if __name__ == '__main__':
