@@ -10,7 +10,7 @@ Here is the Gendiff programm. It compares two files and marks differences betwee
 (flat or nested - doesn't matter). This revision works only with json and yaml formats.
 Has three output formats (default one - is stylish):
 - stylish: nested output (tree view) with changing marks
-- plain: if there is a difference if will be shown in a line
+- plain: if there is a difference it will be shown in a line
 - json: raw output file with changing marks
 
 #### How to use:
@@ -22,7 +22,7 @@ Has three output formats (default one - is stylish):
 #### Installation process and commands:
 Staying in the root project directory use these commands:
 ```
-make build 		        #poetry build distribution package file in .whl format
+make build              #poetry build distribution package file in .whl format
 make package-install	#pip install Gendiff from .whl file
 ```
 No errors occured - the installation has been success.
@@ -33,14 +33,13 @@ make package-uninstall  #pip uninstall the Gendiff
 
 #### Other commands for devepolers:
 ```
-make lint		        #check quality of Python Code with flake8
-make shell		        #enter virtual env
-make publish		    #perform all actions for publishing, except uploading the package
-make automate_build	    #start commans 1by1: shell, lint, build, publish, pip list
-make check              #runs pytest and shows which tests have been run
-make test-cover         #runs pytest cover and saves report in xml
-gendiff1                #runs gendiff with file1.json and file2.json from main root dir
-
+make lint                   #check quality of Python Code with flake8
+make shell                  #enter virtual env
+make publish                #perform all actions for publishing, except uploading the package
+make automate_build         #start commans 1by1: shell, lint, build, publish, pip list
+make check                  #runs pytest and shows which tests have been run
+make test-cover             #runs pytest cover and saves report in xml
+gendiff1                    #runs gendiff with file1.json and file2.json from main root dir
 ```
 
 ### Installation:
