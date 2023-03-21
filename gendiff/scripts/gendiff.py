@@ -16,7 +16,8 @@ args = parser.parse_args()
 
 
 def main():
-    generate_diff(args.first_file, args.second_file, args.format)
+    result = generate_diff(args.first_file, args.second_file, args.format)
+    print(result)
 
 
 if __name__ == '__main__':
