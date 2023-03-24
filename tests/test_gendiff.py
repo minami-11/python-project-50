@@ -4,7 +4,6 @@ from pathlib import Path
 from gendiff.gendiff import generate_diff
 
 
-gendiff_output = Path(Path.cwd(), 'result.txt')
 gendiff_json_output = Path(Path.cwd(), 'result.json')
 
 # Test files fixtures:
@@ -42,10 +41,9 @@ json1 = Path(Path.cwd(), 'tests', 'fixtures', 'result.json')        # Nested
     (path12, path13, standart3)
 ])
 def test_gendiff_with_flat_files(file_1, file_2, correct_result):
-    generate_diff(file_1, file_2)
-    with open(gendiff_output, 'r') as output:
-        with open(correct_result, 'r') as correct:
-            assert output.read() == correct.read()
+    output_string = generate_diff(file_1, file_2)
+    with open(correct_result, 'r') as correct:
+        assert output_string == correct.read()
 
 
 @pytest.mark.parametrize("file_1, file_2, correct_result", [
@@ -53,10 +51,9 @@ def test_gendiff_with_flat_files(file_1, file_2, correct_result):
     (path14, path15, standart4)
 ])
 def test_gendiff_with_nested_files(file_1, file_2, correct_result):
-    generate_diff(file_1, file_2)
-    with open(gendiff_output, 'r') as output:
-        with open(correct_result, 'r') as correct:
-            assert output.read() == correct.read()
+    output_string = generate_diff(file_1, file_2)
+    with open(correct_result, 'r') as correct:
+        assert output_string == correct.read()
 
 
 @pytest.mark.parametrize("file_1, file_2, correct_result", [
@@ -66,10 +63,9 @@ def test_gendiff_with_nested_files(file_1, file_2, correct_result):
     (path5, path6, plain4)
 ])
 def test_gendiff_plain_format(file_1, file_2, correct_result):
-    generate_diff(file_1, file_2, 'plain')
-    with open(gendiff_output, 'r') as output:
-        with open(correct_result, 'r') as correct:
-            assert output.read() == correct.read()
+    output_string = generate_diff(file_1, file_2, 'plain')
+    with open(correct_result, 'r') as correct:
+        assert output_string == correct.read()
 
 
 @pytest.mark.parametrize("file_1, file_2, correct_result", [
