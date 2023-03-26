@@ -85,3 +85,9 @@ def test_gendiff_with_json_valid_output(file_1, file_2, correct_result):
 def test_parsing_wrong_type():
     with pytest.raises(TypeError, match='Get ERROR. Check the file type.'):
         generate_diff(path3, standart1)
+
+
+def test_wrong_formatter_type():
+    with pytest.raises(ValueError,
+                       match='Unknown format type, please check the format'):
+        generate_diff(path3, path4, 'wrong')
