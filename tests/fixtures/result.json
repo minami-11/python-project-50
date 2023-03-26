@@ -1,187 +1,133 @@
-[
-    {
-        "name": "common",
-        "modified": "  ",
-        "depth": 1,
-        "children": [
-            {
-                "name": "follow",
-                "depth": 2,
-                "modified": "+ ",
-                "children": "false"
+{
+    "common": {
+        "type": "same",
+        "children": {
+            "follow": {
+                "type": "added",
+                "children": false
             },
-            {
-                "name": "setting1",
-                "depth": 2,
-                "modified": "  ",
+            "setting1": {
+                "type": "same",
                 "children": "Value 1"
             },
-            {
-                "name": "setting2",
-                "depth": 2,
-                "modified": "- ",
+            "setting2": {
+                "type": "removed",
                 "children": 200
             },
-            {
-                "name": "setting3",
-                "depth": 2,
-                "modified": "-+",
+            "setting3": {
+                "type": "changed",
                 "children": [
-                    "true",
-                    "null"
+                    true,
+                    null
                 ]
             },
-            {
-                "name": "setting4",
-                "depth": 2,
-                "modified": "+ ",
+            "setting4": {
+                "type": "added",
                 "children": "blah blah"
             },
-            {
-                "name": "setting5",
-                "depth": 2,
-                "modified": "+ ",
-                "children": [
-                    {
-                        "modified": "  ",
-                        "depth": 3,
-                        "name": "key5",
+            "setting5": {
+                "type": "added",
+                "children": {
+                    "key5": {
+                        "type": "same",
                         "children": "value5"
                     }
-                ]
+                }
             },
-            {
-                "name": "setting6",
-                "modified": "  ",
-                "depth": 2,
-                "children": [
-                    {
-                        "name": "doge",
-                        "modified": "  ",
-                        "depth": 3,
-                        "children": [
-                            {
-                                "name": "wow",
-                                "depth": 4,
-                                "modified": "-+",
+            "setting6": {
+                "type": "same",
+                "children": {
+                    "doge": {
+                        "type": "same",
+                        "children": {
+                            "wow": {
+                                "type": "changed",
                                 "children": [
                                     "",
                                     "so much"
                                 ]
                             }
-                        ]
+                        }
                     },
-                    {
-                        "name": "key",
-                        "depth": 3,
-                        "modified": "  ",
+                    "key": {
+                        "type": "same",
                         "children": "value"
                     },
-                    {
-                        "name": "ops",
-                        "depth": 3,
-                        "modified": "+ ",
+                    "ops": {
+                        "type": "added",
                         "children": "vops"
                     }
-                ]
+                }
             }
-        ]
+        }
     },
-    {
-        "name": "group1",
-        "modified": "  ",
-        "depth": 1,
-        "children": [
-            {
-                "name": "baz",
-                "depth": 2,
-                "modified": "-+",
+    "group1": {
+        "type": "same",
+        "children": {
+            "baz": {
+                "type": "changed",
                 "children": [
                     "bas",
                     "bars"
                 ]
             },
-            {
-                "name": "foo",
-                "depth": 2,
-                "modified": "  ",
+            "foo": {
+                "type": "same",
                 "children": "bar"
             },
-            {
-                "name": "nest",
-                "depth": 2,
-                "modified": "-+",
+            "nest": {
+                "type": "changed",
                 "children": [
-                    [
-                        {
-                            "modified": "  ",
-                            "depth": 3,
-                            "name": "key",
+                    {
+                        "key": {
+                            "type": "same",
                             "children": "value"
                         }
-                    ],
+                    },
                     "str"
                 ]
             }
-        ]
+        }
     },
-    {
-        "name": "group2",
-        "depth": 1,
-        "modified": "- ",
-        "children": [
-            {
-                "modified": "  ",
-                "depth": 2,
-                "name": "abc",
+    "group2": {
+        "type": "removed",
+        "children": {
+            "abc": {
+                "type": "same",
                 "children": 12345
             },
-            {
-                "modified": "  ",
-                "depth": 2,
-                "name": "deep",
-                "children": [
-                    {
-                        "modified": "  ",
-                        "depth": 3,
-                        "name": "id",
+            "deep": {
+                "type": "same",
+                "children": {
+                    "id": {
+                        "type": "same",
                         "children": 45
                     }
-                ]
+                }
             }
-        ]
+        }
     },
-    {
-        "name": "group3",
-        "depth": 1,
-        "modified": "+ ",
-        "children": [
-            {
-                "modified": "  ",
-                "depth": 2,
-                "name": "deep",
-                "children": [
-                    {
-                        "modified": "  ",
-                        "depth": 3,
-                        "name": "id",
-                        "children": [
-                            {
-                                "modified": "  ",
-                                "depth": 4,
-                                "name": "number",
+    "group3": {
+        "type": "added",
+        "children": {
+            "deep": {
+                "type": "same",
+                "children": {
+                    "id": {
+                        "type": "same",
+                        "children": {
+                            "number": {
+                                "type": "same",
                                 "children": 45
                             }
-                        ]
+                        }
                     }
-                ]
+                }
             },
-            {
-                "modified": "  ",
-                "depth": 2,
-                "name": "fee",
+            "fee": {
+                "type": "same",
                 "children": 100500
             }
-        ]
+        }
     }
-]
+}
