@@ -3,11 +3,6 @@ def is_dict(value) -> bool:
     return isinstance(value, dict)
 
 
-def is_list(value) -> bool:
-    """Return True if value is list, else False"""
-    return isinstance(value, list)
-
-
 def shift(deep, variable: int = 2):
     return ' ' * (4 * deep - variable)
 
@@ -19,9 +14,18 @@ def get_node_value(item: dict):
         raise ValueError('Check item type or item keys')
 
 
-def get_change_mark(value) -> str:
-    '''Return modified mark if value is node'''
-    if is_dict(value):
-        return value['modified']
+def get_node_type(item: dict):
+    if is_dict(item) and 'type' in item:
+        return item['type']
     else:
-        return ''
+        raise ValueError('Check item type or item keys')
+
+
+def pass_through_converter(value):
+    '''Return valid value'''
+    converter = {
+        'True': 'true',
+        'False': 'false',
+        'None': 'null'
+    }
+    return converter.get(str(value), value)
