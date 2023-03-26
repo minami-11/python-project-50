@@ -10,6 +10,8 @@ hexlet_test/
 #Ignore these files:
 file1.json
 file2.json
+FILE3.yaml
+FILE4.yml
 result.txt
 result.json
 tests/conftest.py
