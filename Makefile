@@ -23,6 +23,8 @@ test-cover:
 gendiff1:
 	poetry run gendiff file1.json file2.json
 
+gendiff2:
+	poetry run gendiff FILE3.yaml FILE4.yml
 
 #For installing package from operated system (add "--user" after "install")
 package-install:
