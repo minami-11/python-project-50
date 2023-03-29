@@ -1,8 +1,9 @@
-from ..formatter.stylish import use_stylish_format
-from ..formatter.plain import use_plain_format
-from ..formatter.format_libr import is_dict
-from ..formatter.format_libr import pass_through_converter
+from ..formatter.stylish import format as stylish
+from ..formatter.plain import format as plain
+from ..formatter.json import format as get_json
+from ..formatter.format import is_dict
+from ..formatter.format import pass_through_converter
 
 
-__all__ = ['use_stylish_format', 'use_plain_format', 'is_dict',
+__all__ = ['stylish', 'plain', 'get_json', 'is_dict',
            'pass_through_converter']
