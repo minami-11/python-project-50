@@ -21,11 +21,12 @@ path14 = Path(Path.cwd(), 'tests', 'fixtures', 'FILE3.yaml')        # Nested
 path15 = Path(Path.cwd(), 'tests', 'fixtures', 'FILE4.yml')         # Nested
 
 # Result fixtures:
-standart1 = Path(Path.cwd(), 'tests', 'fixtures', 'standart1.txt')  # Empty
+standart1 = Path(Path.cwd(), 'tests', 'fixtures', 'standart1.txt')  # Empty {}
 standart2 = Path(Path.cwd(), 'tests', 'fixtures', 'standart2.txt')  # Empty|Flat
 standart3 = Path(Path.cwd(), 'tests', 'fixtures', 'standart3.txt')  # Flat|Flat
 standart4 = Path(Path.cwd(), 'tests', 'fixtures', 'standart4.txt')  # Nested
 
+plain1 = Path(Path.cwd(), 'tests', 'fixtures', 'plain1.txt')        # Empty
 plain2 = Path(Path.cwd(), 'tests', 'fixtures', 'plain2.txt')        # Empty|Flat
 plain3 = Path(Path.cwd(), 'tests', 'fixtures', 'plain3.txt')        # Flat|Flat
 plain4 = Path(Path.cwd(), 'tests', 'fixtures', 'plain4.txt')        # Nested
@@ -57,7 +58,7 @@ def test_gendiff_with_nested_files(file_1, file_2, correct_result):
 
 
 @pytest.mark.parametrize("file_1, file_2, correct_result", [
-    (path1, path2, standart1),
+    (path1, path2, plain1),
     (path1, path3, plain2),
     (path3, path4, plain3),
     (path5, path6, plain4)
