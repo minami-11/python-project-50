@@ -4,8 +4,6 @@ from pathlib import Path
 from gendiff.gendiff import generate_diff
 
 
-gendiff_json_output = Path(Path.cwd(), 'result.json')
-
 # Test files fixtures:
 path1 = Path(Path.cwd(), 'tests', 'fixtures', 'file0_1.json')       # Empty
 path2 = Path(Path.cwd(), 'tests', 'fixtures', 'file0_2.json')       # {}
@@ -73,14 +71,12 @@ def test_gendiff_plain_format(file_1, file_2, correct_result):
     (path5, path6, json1)
 ])
 def test_gendiff_with_json_valid_output(file_1, file_2, correct_result):
-    generate_diff(file_1, file_2, 'json')
-    with open(gendiff_json_output, 'r') as json_output:
-        with open(correct_result, 'r') as json_correct:
-            output = json_output.read()
-            output_data = json.loads(output)
-            correct = json_correct.read()
-            correct_data = json.loads(correct)
-            assert output_data == correct_data
+    output_string = generate_diff(file_1, file_2, 'json')
+    with open(correct_result, 'r') as json_correct:
+        correct = json_correct.read()
+        correct_data = json.loads(correct)
+        output_data = json.loads(output_string)
+        assert output_data == correct_data
 
 
 def test_parsing_wrong_type():
