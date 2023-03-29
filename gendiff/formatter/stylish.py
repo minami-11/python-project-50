@@ -1,7 +1,7 @@
-from ..formatter.format_libr import is_dict, shift
-from ..formatter.format_libr import get_node_value
-from ..formatter.format_libr import get_node_type
-from ..formatter.format_libr import pass_through_converter as convert
+from ..formatter.format import is_dict, shift
+from ..formatter.format import get_node_value
+from ..formatter.format import get_node_type
+from ..formatter.format import pass_through_converter as convert
 
 
 def get_type_mark(income: dict):
@@ -15,37 +15,38 @@ def get_type_mark(income: dict):
     return type_converter.get(node_type)
 
 
-def make_valid(value, deep):
+def make_valid(value):
     '''Make valid value from income data'''
-    if is_dict(value):
-        return use_stylish_format(value, deep)
     valid_value = convert(value)
     return valid_value
 
 
-def use_stylish_format(income: dict, deep: int = 0) -> str:
+def format(input_diff: dict) -> str:
     '''Format income raw data in stylish way'''
-    if not income:
-        return ''
-    deep += 1
-    output = ['{']
 
-    for key, value in income.items():
-        mark = get_type_mark(value)
-        marked_name = f"{shift(deep)}{mark}{key}"
-        node_value = get_node_value(value)
-        node_type = get_node_type(value)
+    def walk(diff, deep):
+        deep += 1
+        output = ['{']
 
-        if is_dict(node_value) and node_type != 'changed':
-            output.append(f"{marked_name}: "
-                          f"{use_stylish_format(node_value, deep)}")
-        elif node_type == 'changed':
-            output.append(f"{shift(deep)}- {key}: "
-                          f"{make_valid(node_value[0], deep)}")
-            output.append(f"{shift(deep)}+ {key}: "
-                          f"{make_valid(node_value[1], deep)}")
-        else:
-            output.append(f"{marked_name}: {make_valid(node_value, deep)}")
+        if not is_dict(diff):
+            return make_valid(diff)
+        for key, value in diff.items():
+            mark = get_type_mark(value)
+            marked_name = f"{shift(deep)}{mark}{key}"
+            node_value = get_node_value(value)
+            node_type = get_node_type(value)
 
-    output.append(f"{shift(deep - 1, 0)}" + '}')
-    return '\n'.join(output)
+            if is_dict(node_value) and node_type != 'changed':
+                output.append(f"{marked_name}: {walk(node_value, deep)}")
+            elif node_type == 'changed':
+                output.append(f"{shift(deep)}- {key}: "
+                              f"{walk(node_value[0], deep)}")
+                output.append(f"{shift(deep)}+ {key}: "
+                              f"{walk(node_value[1], deep)}")
+            else:
+                output.append(f"{marked_name}: {make_valid(node_value)}")
+
+        output.append(f"{shift(deep - 1, 0)}" + '}')
+        new_line = '\n' * bool(diff)
+        return new_line.join(output)
+    return walk(input_diff, 0)
