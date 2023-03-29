@@ -1,8 +1,4 @@
-import json
-
-from gendiff.formatter import use_stylish_format
-from gendiff.formatter import use_plain_format
-from gendiff.formatter import is_dict
+from gendiff.formatter import stylish, plain, get_json, is_dict
 from gendiff.data_getter import get_data_from_source as get_data
 
 
@@ -65,17 +61,14 @@ def make_raw_variance(data_1: dict, data_2: dict):
 
 def generate_diff(source_1: str, source_2: str, format: str = 'stylish') -> str:
     '''Compare two files and match differences between them'''
-
     parsed_data_1 = get_data(source_1)
     parsed_data_2 = get_data(source_2)
     raw_variance_data = make_raw_variance(parsed_data_1, parsed_data_2)
+
     match format:
-        case 'stylish': formatted_string = use_stylish_format(raw_variance_data)
-        case 'plain': formatted_string = use_plain_format(raw_variance_data)
-        case 'json':
-            with open('result.json', 'w') as json_file:
-                json.dump(raw_variance_data, json_file, indent=4)
-                formatted_string = json.dumps(raw_variance_data)
+        case 'stylish': formatted_string = stylish(raw_variance_data)
+        case 'plain': formatted_string = plain(raw_variance_data)
+        case 'json': formatted_string = get_json(raw_variance_data)
         case _:
             raise ValueError('Unknown format type, please check the format')
 
